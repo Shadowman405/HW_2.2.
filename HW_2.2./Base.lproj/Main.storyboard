@@ -81,19 +81,19 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="j2P-d7-Now">
                                 <rect key="frame" x="147.5" y="298" width="138.5" height="31"/>
                                 <connections>
-                                    <action selector="slidersColorChanging" destination="BYZ-38-t0r" eventType="valueChanged" id="6UZ-GC-raL"/>
+                                    <action selector="setColor:" destination="BYZ-38-t0r" eventType="valueChanged" id="x4V-wK-ukz"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="UYJ-BK-CmS">
                                 <rect key="frame" x="149" y="358" width="137" height="31"/>
                                 <connections>
-                                    <action selector="slidersColorChanging" destination="BYZ-38-t0r" eventType="valueChanged" id="9mf-Tr-TJ4"/>
+                                    <action selector="setColor:" destination="BYZ-38-t0r" eventType="valueChanged" id="bQQ-V6-r8L"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="vMO-Hb-3XG">
                                 <rect key="frame" x="148" y="418" width="138" height="31"/>
                                 <connections>
-                                    <action selector="slidersColorChanging" destination="BYZ-38-t0r" eventType="valueChanged" id="Tds-aZ-SdN"/>
+                                    <action selector="setColor:" destination="BYZ-38-t0r" eventType="valueChanged" id="oXS-YG-iyY"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Red:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaG-1k-Z8E">

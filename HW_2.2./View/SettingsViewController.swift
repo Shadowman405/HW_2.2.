@@ -56,21 +56,30 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         navigationItem.setHidesBackButton(false, animated: false)
     }
     
+    //MARK:  new slider action
+    @IBAction func setColor(_ sender: UISlider) {
+        setColorForView()
+        
+        switch sender {
+        case redColorSlider:
+            setValue(for: redColorLabel)
+            redTxtField.text = string(from: redColorSlider)
+        case greenColorSlider:
+            setValue(for: greenColorLabel)
+            greenTxtField.text = string(from: greenColorSlider)
+        default:
+            setValue(for: blueColorLabel)
+            blueTxtField.text = string(from: blueColorSlider)
+        }
+    }
     
-    @IBAction func slidersColorChanging() {
-        //vars for usability
-        let redValue = CGFloat(redColorSlider.value)
-        let greenValue = CGFloat(greenColorSlider.value)
-        let blueValue = CGFloat(blueColorSlider.value)
-        //change text
-        redColorLabel.text = String(format: "%.2f", redColorSlider.value)
-        redTxtField.text = String(format: "%.2f", redColorSlider.value)
-        greenColorLabel.text = String(format: "%.2f", greenColorSlider.value)
-        greenTxtField.text = String(format: "%.2f", redColorSlider.value)
-        blueColorLabel.text = String(format: "%.2f", blueColorSlider.value)
-        blueTxtField.text = String(format: "%.2f", redColorSlider.value)
-        //change color of view
-        viewToChange.backgroundColor = UIColor(displayP3Red: redValue, green: greenValue, blue: blueValue, alpha: 1)
+    private func setColorForView() {
+        viewToChange.backgroundColor = UIColor(
+            red: CGFloat(redColorSlider.value),
+            green: CGFloat(greenColorSlider.value),
+            blue: CGFloat(blueColorSlider.value),
+            alpha: 1
+        )
     }
     
 // Switching between text fields by keyboard
@@ -91,44 +100,38 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case redTxtField:
-            if textField == redTxtField {
                 guard let textRed = redTxtField.text else {return}
                 if textRed <= checkNum {
                     redColorSlider.value = Float(textRed) ?? 0.0
                     redColorLabel.text = textRed
-                    slidersColorChanging()
+                    setColorForView()
                 } else {
                     redColorSlider.value = 0
                     redColorLabel.text = "0.00"
                     redTxtField.text = "0"
                 }
-            }
         case greenTxtField:
-            if textField == greenTxtField {
-                guard let greenText = redTxtField.text else {return}
+                guard let greenText = greenTxtField.text else {return}
                 if greenText <= checkNum {
                     greenColorSlider.value = Float(greenText) ?? 0.0
                     greenColorLabel.text = greenText
-                    slidersColorChanging()
+                    setColorForView()
                 } else {
                     greenColorSlider.value = 0
                     greenColorLabel.text = "0.00"
                     greenTxtField.text = "0"
                 }
-            }
         case blueTxtField:
-            if textField == blueTxtField {
-                guard let blueText = redTxtField.text else {return}
+                guard let blueText = blueTxtField.text else {return}
                 if blueText <= checkNum {
                     blueColorSlider.value = Float(blueText) ?? 0.0
                     blueColorLabel.text = blueText
-                    slidersColorChanging()
+                    setColorForView()
                 } else {
                     blueColorSlider.value = 0
                     blueColorLabel.text = "0.00"
                     blueTxtField.text = "0"
                 }
-            }
         default:
             textField.resignFirstResponder()
         }
@@ -146,6 +149,23 @@ extension SettingsViewController: Comparable {
         return lhs.redTxtField.text! <= rhs.checkNum
             && lhs.greenTxtField.text! <= rhs.checkNum
             && lhs.blueTxtField.text! <= rhs.checkNum
+    }
+    
+    private func setValue(for labels: UILabel...) {
+        labels.forEach { label in
+            switch label {
+            case redColorLabel:
+                label.text = string(from: redColorSlider)
+            case greenColorLabel:
+                label.text = string(from: greenColorSlider)
+            default:
+                label.text = string(from: blueColorSlider)
+            }
+        }
+    }
+    
+    private func string(from slider: UISlider) -> String {
+        String(format: "%.2f", slider.value)
     }
 }
 
